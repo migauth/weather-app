@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/Container";
 import Navbar from "@/components/Navbar";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
@@ -94,6 +95,7 @@ export default function Home() {
               <p> {format(parseISO(firstData?.dt_txt ??''), 'EEEE')}</p>
               <p> {format(parseISO(firstData?.dt_txt ??''), 'dd.MM.yyyy')}</p>
             </h2>
+            <Container></Container>
             <div></div>
           </div>
         </section>
