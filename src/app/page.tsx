@@ -4,9 +4,10 @@ import Container from "@/components/Container";
 import Navbar from "@/components/Navbar";
 import WeatherIcon from "@/components/WeatherIcon";
 import convertKelvinToCelsius from "@/utils/convertKelvintoCelsius";
-import axios from "axios";
+import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
 import { format, parseISO } from "date-fns";
 import { useQuery } from "react-query";
+import axios from "axios";
 
 type WeatherData = {
   cod: string;
@@ -69,7 +70,7 @@ export default function Home() {
     "repoData",
     async () => {
       const { data } = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=pune&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
+        `https://api.openweathermap.org/data/2.5/forecast?q=sooke&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
       );
       return data;
     }
@@ -121,12 +122,15 @@ export default function Home() {
               {/* time and weather icon */}
               <div className="flex gap-10 sm:gap-16 overflow-x-auto w-full justify-between pr-3">
                 {data?.list.map((d, i) =>
-                <div key={i}>
+                <div key={i}
+                className="flex flex-col justify-between gap-2 items-center text-xs font-semibold "
+                >
                   <p className="whitespace-nowrap">
                     {format(parseISO(d.dt_txt), 'h:mm a')}
                   </p>
                   <div>
-                    <WeatherIcon iconname={d.weather[0].icon} />
+                    {/* <WeatherIcon iconname={d.weather[0].icon} /> */}
+                    <WeatherIcon iconname={getDayOrNightIcon(d.weather[0].icon, d.dt_txt)} />
                     {convertKelvinToCelsius(d?.main.temp ?? 0)}°
                   </div>
                   <p>
@@ -139,7 +143,7 @@ export default function Home() {
             <div></div>
           </div>
         </section>
-        {/* 7 dat forcast */}
+        {/* 7 day forcast */}
         <section></section>
       </main>
     </div>
