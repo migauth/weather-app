@@ -2,6 +2,7 @@
 
 import Container from "@/components/Container";
 import Navbar from "@/components/Navbar";
+import WeatherIcon from "@/components/WeatherIcon";
 import convertKelvinToCelsius from "@/utils/convertKelvintoCelsius";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
@@ -124,8 +125,12 @@ export default function Home() {
                   <p className="whitespace-nowrap">
                     {format(parseISO(d.dt_txt), 'h:mm a')}
                   </p>
-                  <p>
+                  <div>
+                    <WeatherIcon iconname={d.weather[0].icon} />
                     {convertKelvinToCelsius(d?.main.temp ?? 0)}°
+                  </div>
+                  <p>
+                    {d.weather[0].main}
                   </p>
                 </div>
                 )}
