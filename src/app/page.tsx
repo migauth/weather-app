@@ -65,6 +65,14 @@ type WeatherData = {
   };
 };
 
+const now = new Date();
+const hours = now.getHours().toString().padStart(2, '0');
+const minutes = now.getMinutes().toString().padStart(2, '0');
+
+const formattedTime = `${hours}:${minutes}`;
+console.log(`The local time is: ${formattedTime}`);
+
+
 export default function Home() {
   const { isLoading, error, data } = useQuery<WeatherData>(
     "repoData",
@@ -97,6 +105,7 @@ export default function Home() {
             <h2 className="flex gap-1 text-2x1 items-end">
               <p> {format(parseISO(firstData?.dt_txt ??''), 'EEEE')}</p>
               <p> {format(parseISO(firstData?.dt_txt ??''), 'dd.MM.yyyy')}</p>
+              {/* <p> Local time: {formattedTime} </p> */}
             </h2>
             <Container className="gap-10 px-6 item-center rounded-md">
               {/* temp */}
