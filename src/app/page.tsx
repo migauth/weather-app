@@ -98,7 +98,23 @@ export default function Home() {
             </h2>
             <Container className="gap-10 px-6 item-center rounded-md">
               <div className="flex flex-col px-4 ">
-                {convertKelvinToCelsius(firstData?.main.temp ?? 0)}
+                <span className="text-5xl">
+                {convertKelvinToCelsius(firstData?.main.temp ?? 0)}°
+                </span>
+                <p className="text-xs space-x-1 whitespace-nowrap">
+                  <span>Feels like</span>
+                  <span>
+                    {convertKelvinToCelsius(firstData?.main.feels_like ?? 0)}°
+                  </span>
+                </p>
+                <p className="text-xs space-x-2">
+                  <span>
+                  {convertKelvinToCelsius(firstData?.main.temp_min ?? 0)}°↓
+                  </span>
+                  <span>
+                  {convertKelvinToCelsius(firstData?.main.temp_max ?? 0)}°↑
+                  </span>
+                </p>
               </div>
             </Container>
             <div></div>
