@@ -2,6 +2,7 @@
 
 import Container from "@/components/Container";
 import Navbar from "@/components/Navbar";
+import convertKelvinToCelsius from "@/utils/convertKelvintoCelsius";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { useQuery } from "react-query";
@@ -95,7 +96,11 @@ export default function Home() {
               <p> {format(parseISO(firstData?.dt_txt ??''), 'EEEE')}</p>
               <p> {format(parseISO(firstData?.dt_txt ??''), 'dd.MM.yyyy')}</p>
             </h2>
-            <Container></Container>
+            <Container className="gap-10 px-6 item-center rounded-md">
+              <div className="flex flex-col px-4 ">
+                {convertKelvinToCelsius(firstData?.main.temp ?? 0)}
+              </div>
+            </Container>
             <div></div>
           </div>
         </section>
