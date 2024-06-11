@@ -121,8 +121,11 @@ export default function Home() {
               <div className="flex gap-10 sm:gap-16 overflow-x-auto w-full justify-between pr-3">
                 {data?.list.map((d, i) =>
                 <div key={i}>
-                  <p>
+                  <p className="whitespace-nowrap">
                     {format(parseISO(d.dt_txt), 'h:mm a')}
+                  </p>
+                  <p>
+                    {convertKelvinToCelsius(d?.main.temp ?? 0)}°
                   </p>
                 </div>
                 )}
