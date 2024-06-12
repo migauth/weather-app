@@ -155,7 +155,7 @@ export default function Home() {
             <div className=" flex gap-4">
               {/* left */}
               <Container className="w-fit justify-center flex-col px-4 items-center">
-                <p>{firstData?.weather[0].description}</p>
+                <p className=" capitalize text-center">{firstData?.weather[0].description}</p>
                 <WeatherIcon
                       iconname={getDayOrNightIcon(
                         firstData?.weather[0].icon ?? '',
@@ -163,6 +163,7 @@ export default function Home() {
                       )}
                       />
               </Container>
+              <Container className="bg-yellow-300 px-6 gap-4 justify-between overflow-x-auto"></Container>
               {/* right */}
             </div>
           </div>
