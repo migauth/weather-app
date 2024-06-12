@@ -5,10 +5,11 @@ import Navbar from "@/components/Navbar";
 import WeatherIcon from "@/components/WeatherIcon";
 import convertKelvinToCelsius from "@/utils/convertKelvintoCelsius";
 import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
-import { format, parseISO } from "date-fns";
+import { format, fromUnixTime, parseISO } from "date-fns";
 import { useQuery } from "react-query";
 import axios from "axios";
 import WeatherDetails from "@/components/WeatherDetails";
+import metersToKilometers from "@/utils/metersToKilometers";
 
 type WeatherData = {
   cod: string;
@@ -165,8 +166,18 @@ export default function Home() {
                       />
               </Container>
               <Container className="bg-yellow-300 px-6 gap-4 justify-between overflow-x-auto">
-                <WeatherDetails visability={} airPressure={}>
-
+                <WeatherDetails 
+                visability={metersToKilometers(firstData?.visibility ?? 10000)} 
+                airPressure={`${firstData?.main.pressure} hPa`}
+                humidity={`${firstData?.main.humidity} %`}
+                windSpeed={`${firstData?.wind.speed} km`}
+                sunrise={format(
+                  fromUnixTime(data?.city.sunrise ?? 
+                  1718194404), "H:mm")}
+                sunset={format(
+                  fromUnixTime(data?.city.sunset ?? 
+                  1718252195), "H:mm")}
+                >
                 </WeatherDetails>
               </Container>
               {/* right */}
