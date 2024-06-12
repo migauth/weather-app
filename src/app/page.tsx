@@ -8,6 +8,7 @@ import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
 import { format, parseISO } from "date-fns";
 import { useQuery } from "react-query";
 import axios from "axios";
+import WeatherDetails from "@/components/WeatherDetails";
 
 type WeatherData = {
   cod: string;
@@ -163,7 +164,11 @@ export default function Home() {
                       )}
                       />
               </Container>
-              <Container className="bg-yellow-300 px-6 gap-4 justify-between overflow-x-auto"></Container>
+              <Container className="bg-yellow-300 px-6 gap-4 justify-between overflow-x-auto">
+                <WeatherDetails visability={} airPressure={}>
+
+                </WeatherDetails>
+              </Container>
               {/* right */}
             </div>
           </div>
