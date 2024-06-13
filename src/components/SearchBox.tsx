@@ -22,7 +22,7 @@ export default function SearchBox(props: Props) {
         placeholder="Seach location..."
         className="px-4 py-4 w-[230px] border-gray-300 rounded-l-md focus:outline-none h-full"
       />
-      <button className="px-4 py-[5px] bg-yellow-400 text-3xl text-white hover:text-yellow-300 cursor-pointer transition duration-300 rounded-r-md ">
+      <button className="px-4 py-[5px] bg-yellow-400 text-3xl text-white hover:text-yellow-300 cursor-pointer transition duration-300 rounded-r-md">
         <IoIosSearch />
       </button>
     </form>
