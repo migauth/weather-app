@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import WeatherDetails from "@/components/WeatherDetails";
 import metersToKilometers from "@/utils/metersToKilometers";
+import convertWindSpeed from "@/utils/convertWindSpeed";
 
 type WeatherData = {
   cod: string;
@@ -93,6 +94,7 @@ export default function Home() {
     return (
       <div className="flex items-center min-h-screen justify-center">
         <p className="animate-bounce">Loading...</p>
+        <p></p>
       </div>
     );
 
@@ -108,7 +110,7 @@ export default function Home() {
               <p> {format(parseISO(firstData?.dt_txt ?? ""), "dd.MM.yyyy")}</p>
               {/* <p> Local time: {formattedTime} </p> */}
             </h2>
-            <Container className="gap-10 px-6 item-center rounded-md">
+            <Container className="gap-10 px-6 item-center rounded-md ">
               {/* temp */}
               <div className="flex flex-col px-4 ">
                 <span className="text-5xl">
@@ -169,8 +171,8 @@ export default function Home() {
                 <WeatherDetails 
                 visability={metersToKilometers(firstData?.visibility ?? 10000)} 
                 airPressure={`${firstData?.main.pressure} hPa`}
-                humidity={`${firstData?.main.humidity} %`}
-                windSpeed={`${firstData?.wind.speed} km`}
+                humidity={`${firstData?.main.humidity}%`}
+                windSpeed={convertWindSpeed(firstData?.wind.speed ?? 100)}
                 sunrise={format(
                   fromUnixTime(data?.city.sunrise ?? 
                   1718194404), "H:mm")}
