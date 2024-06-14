@@ -10,12 +10,12 @@ import { useAtom } from 'jotai';
 import { loadingCityAtom, placeAtom } from '@/app/atom';
 
 
-type Props = {}
+type Props = { location?: string }
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
 
-export default function Navbar({}: Props) {
+export default function Navbar({ location }: Props) {
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
   
@@ -86,7 +86,7 @@ export default function Navbar({}: Props) {
         <section className='flex gap-4 items-center'>
           <FaLocationCrosshairs className='text-2xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
           <CiLocationOn className='text-3xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
-          <p className='text-white text-lg font-semibold'>Canada</p>
+          <p className='text-white text-lg font-semibold'>{location}</p>
           <div>
             {/* search box */}
             <SearchBox
