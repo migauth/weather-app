@@ -104,7 +104,7 @@ export default function Navbar({ location }: Props) {
           className='text-2xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
           <CiLocationOn className='text-3xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
           <p className='text-white text-lg font-semibold'>{location}</p>
-          <div>
+          <div className='relative hidden md:flex'>
             {/* search box */}
             <SearchBox
             value={city}
@@ -125,7 +125,7 @@ export default function Navbar({ location }: Props) {
       </div>
     </nav>
     <section className="flex   max-w-7xl px-3 md:hidden ">
-        <div className="relative ">
+        <div className=" relative">
           {/* SearchBox */}
 
           <SearchBox
