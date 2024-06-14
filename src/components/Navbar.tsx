@@ -70,7 +70,21 @@ export default function Navbar({ location }: Props) {
 
   function handleCurrentLocation() {
     if (navigator.geolocation) {
-
+      navigator.geolocation.getCurrentPosition(async (postiion) => {
+        const { latitude, longitude } = postiion.coords;
+        try {
+          setLoadingCity(true);
+          const response = await axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+          );
+          setTimeout(() => {
+            setLoadingCity(false);
+            setPlace(response.data.name);
+          }, 500);
+        } catch (error) {
+          setLoadingCity(false);
+        }
+      });
     }
   }
 
@@ -84,7 +98,10 @@ export default function Navbar({ location }: Props) {
         </div>
         {/*  */}
         <section className='flex gap-4 items-center'>
-          <FaLocationCrosshairs className='text-2xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
+          <FaLocationCrosshairs 
+          title='Your Current Location'
+          onClick={handleCurrentLocation}
+          className='text-2xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
           <CiLocationOn className='text-3xl text-white hover:text-yellow-300 cursor-pointer transition duration-300'/>
           <p className='text-white text-lg font-semibold'>{location}</p>
           <div>
