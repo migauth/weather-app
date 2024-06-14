@@ -72,6 +72,7 @@ export default function Navbar({ location }: Props) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (postiion) => {
         const { latitude, longitude } = postiion.coords;
+        console.log(postiion);
         try {
           setLoadingCity(true);
           const response = await axios.get(
@@ -95,6 +96,7 @@ export default function Navbar({ location }: Props) {
         <div className='flex items-center justify-center gap-2'>    
           <h2 className='text-white text-3xl font-extrabold hover:text-yellow-300 transition duration-300'>Weather</h2>
           <FaSun className='text-3xl mt-1 text-yellow-300 animate-spin-slow'/>
+          {/* <img className=' size-12 mt-1 text-yellow-300 animate-spin-slow' src="/sun.png" alt="" /> */}
         </div>
         {/*  */}
         <section className='flex gap-4 items-center'>
